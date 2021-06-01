@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1485e4e8-1e26-4af8-92e5-3b29bfcdeaf6" name="AWS" url="http://chernov.io">
+        <fileTransfer rootFolder="/opt/bitnami/projects/chernov" accessType="SFTP" host="chernov.io" port="22" sshConfigId="5b313745-6934-43dc-a3e2-1834d2407e6d" sshConfig="bitnami@chernov.io:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

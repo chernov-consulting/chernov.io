@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+        var _iub = _iub || [];
+        _iub.csConfiguration = {
+            "whitelabel": false,
+            "lang": "en",
+            "siteId": 2259924,
+            "consentOnContinuedBrowsing": false,
+            "enableCMP": true,
+            "cookiePolicyId": 51162682,
+            "banner": {
+                "acceptButtonDisplay": true,
+                "customizeButtonDisplay": true,
+                "position": "bottom",
+                "closeButtonDisplay": false,
+                "acceptButtonColor": "#495057",
+                "acceptButtonCaptionColor": "white",
+                "customizeButtonColor": "#212121",
+                "customizeButtonCaptionColor": "white",
+                "rejectButtonColor": "#0073CE",
+                "rejectButtonCaptionColor": "white",
+                "textColor": "white",
+                "backgroundColor": "#000001"
+            },
+            "callback": {
+                onPreferenceExpressedOrNotNeeded: function (preference) {
+                    dataLayer.push({
+                        iubenda_ccpa_opted_out: _iub.cs.api.isCcpaOptedOut()
+                    });
+                    if (!preference) {
+                        dataLayer.push({
+                            event: "iubenda_preference_not_needed"
+                        });
+                    } else {
+                        if (preference.consent === true) {
+                            dataLayer.push({
+                                event: "iubenda_consent_given"
+                            });
+                        } else if (preference.consent === false) {
+                            dataLayer.push({
+                                event: "iubenda_consent_rejected"
+                            });
+                        } else if (preference.purposes) {
+                            for (var purposeId in preference.purposes) {
+                                if (preference.purposes[purposeId]) {
+                                    dataLayer.push({
+                                        event: "iubenda_consent_given_purpose_" + purposeId
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NM67G8Q');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Software development consulting company"/>
+    <meta name="author" content="Chernov Consulting"/>
+
+    <title>Chernov Consulting</title>
+
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://kit.fontawesome.com/27b1eec616.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Varela&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="stylesheets/styles.css" rel="stylesheet">
+
+</head>
+<body id="page-top">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NM67G8Q"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{{{body}}}
+
+<!-- Bootstrap core JS-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<!-- Core theme JS-->
+<script src="javascripts/scripts.js"></script>
+
+
+</body>
+</html>
