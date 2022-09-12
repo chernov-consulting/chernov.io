@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="chernov.io" id="5b313745-6934-43dc-a3e2-1834d2407e6d" keyPath="C:\msys64\home\BEChernA\.ssh\id_rsa_chernov_io" port="22" nameFormat="DESCRIPTIVE" username="bitnami" />
+      <sshConfig host="chernov.io" id="5b313745-6934-43dc-a3e2-1834d2407e6d" keyPath="$USER_HOME$/.ssh/id_rsa" port="22" nameFormat="DESCRIPTIVE" username="bitnami" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>
