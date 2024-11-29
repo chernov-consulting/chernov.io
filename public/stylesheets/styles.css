@@ -10754,7 +10754,7 @@ a.text-black:hover, a.text-black:focus {
 
 #mainNav {
     min-height: 3.5rem;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 #mainNav .navbar-toggler {
@@ -10773,7 +10773,7 @@ a.text-black:hover, a.text-black:focus {
 }
 
 #mainNav .navbar-nav .nav-item:hover {
-    color: fade(#fff, 80%);
+    color: rgba(255, 255, 255, 0.8);
     outline: none;
     background-color: transparent;
 }
@@ -10788,7 +10788,6 @@ a.text-black:hover, a.text-black:focus {
         padding-top: 0;
         padding-bottom: 0;
         border-bottom: none;
-        background-color: transparent;
         transition: background-color 0.3s ease-in-out;
     }
 
@@ -10800,11 +10799,11 @@ a.text-black:hover, a.text-black:focus {
     #mainNav .nav-link {
         transition: none;
         padding: 2rem 1.5rem;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(0, 0, 0, 0.5);
     }
 
     #mainNav .nav-link:hover {
-        color: rgba(255, 255, 255, 0.75);
+        color: rgba(0, 0, 0, 0.75);
     }
 
     #mainNav .nav-link:active {
@@ -10820,21 +10819,21 @@ a.text-black:hover, a.text-black:focus {
     }
 
     #mainNav.navbar-shrink .nav-link {
-        color: #000000;
+        /*color: #000000;*/
         padding: 1.5rem 1.5rem 1.25rem;
         border-bottom: 0.25rem solid transparent;
     }
 
     #mainNav.navbar-shrink .nav-link:hover {
-        color: #17a2b8;
+        /*color: #17a2b8;*/
     }
 
     #mainNav.navbar-shrink .nav-link:active {
-        color: #17a2b8;
+        /*color: #17a2b8;*/
     }
 
     #mainNav.navbar-shrink .nav-link.active {
-        color: #17a2b8;
+        /*color: #17a2b8;*/
         outline: none;
         border-bottom: 0.25rem solid #17a2b8;
     }
@@ -10977,4 +10976,33 @@ a.text-black:hover, a.text-black:focus {
 
 .contact-section .social a:active {
     color: #fff;
+}
+
+
+/* additional styles for particles */
+
+.masterhead {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* Adjust the height as needed */
+    overflow: hidden;
+}
+
+.masterhead .container {
+    z-index: 2; /* Ensure the text is above the particles */
+    position: relative; /* Ensure z-index works */
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure particles are behind other content */
+}
+
+canvas {
+    display: block;
+    vertical-align: bottom;
 }

@@ -8,5 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="iubenda_cs" level="application" />
+    <orderEntry type="library" name="stub-v2" level="application" />
+    <orderEntry type="library" name="animejs" level="application" />
+    <orderEntry type="library" name="particles.js" level="application" />
   </component>
 </module>

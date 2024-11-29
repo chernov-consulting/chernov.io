@@ -55,3 +55,5 @@
     $(window).scroll(navbarCollapse);
 
 })(jQuery); // End of use strict
+
+particlesJS.load('particles-js', 'assets/particles.json');
