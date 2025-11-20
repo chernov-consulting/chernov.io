@@ -1,0 +1,125 @@
+.careers-section .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.careers-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.careers-section .card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+.careers-section .card-text {
+    flex-grow: 1;
+}
+
+.careers-section .btn-primary {
+    margin-top: auto;
+    background-color: #64a19d;
+    border-color: #64a19d;
+}
+
+.careers-section .btn-primary:hover {
+    background-color: #548b87;
+    border-color: #4f837f;
+}
+
+.careers-section h4 {
+    color: #343a40;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.careers-section ul {
+    padding-left: 1.5rem;
+}
+
+.careers-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.careers-section .card-title {
+    font-weight: 600;
+}
+
+.careers-section .location-badge {
+    display: inline-block;
+    margin: 0 auto 15px auto;
+    background-color: rgba(100, 161, 157, 0.15);
+    color: #467370;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Custom padding utility */
+.pt-6 {
+    padding-top: 5rem !important;
+}
+
+/* About section card styles */
+.about-card {
+    background-color: #343a40;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-card .card-body {
+    position: relative;
+}
+
+.about-card .card-title {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.about-card ul {
+    padding-left: 1.5rem;
+}
+
+.about-card ul li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+}
+
+.about-card i {
+    color: #64a19d;
+}
+
+/* Updated contact section styles for light background */
+.contact-section.bg-light h4 {
+    color: #343a40 !important;
+}
+
+.contact-section.bg-light p {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.contact-section .social-icon {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.contact-section .social-icon:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.8) !important;
+}
