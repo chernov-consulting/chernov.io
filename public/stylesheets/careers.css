@@ -2,14 +2,14 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .careers-section .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
 }
 
 .careers-section .card-body {
@@ -71,15 +71,17 @@
 
 /* About section card styles */
 .about-card {
-    background-color: #343a40;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid rgba(100, 161, 157, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .about-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.75rem 2rem rgba(100, 161, 157, 0.15);
+    border-color: rgba(100, 161, 157, 0.25);
 }
 
 .about-card .card-body {
@@ -115,11 +117,47 @@
 }
 
 .contact-section .social-icon {
-    background: rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.45) !important;
+    transition: all 0.3s ease;
 }
 
 .contact-section .social-icon:hover {
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.8) !important;
+    background: linear-gradient(135deg, #467370 0%, #64a19d 100%);
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 161, 157, 0.3);
+}
+
+/* Founder photo wrapper with gradient border */
+.founder-photo-wrapper {
+    display: inline-block;
+    padding: 3px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #467370 0%, #64a19d 50%, #7fb9b5 100%);
+    box-shadow: 0 0.75rem 2.5rem rgba(100, 161, 157, 0.25),
+                0 0 40px rgba(100, 161, 157, 0.1);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.founder-photo-wrapper:hover {
+    box-shadow: 0 1rem 3rem rgba(100, 161, 157, 0.35),
+                0 0 60px rgba(100, 161, 157, 0.15);
+    transform: translateY(-3px);
+}
+
+.founder-photo {
+    max-width: 360px;
+    border-radius: 10px;
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .founder-photo-wrapper {
+        margin: 0 auto;
+    }
+
+    .founder-photo {
+        max-width: 280px;
+    }
 }
