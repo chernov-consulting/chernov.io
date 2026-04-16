@@ -71,8 +71,8 @@
 
 /* About section card styles */
 .about-card {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    border: 1px solid rgba(100, 161, 157, 0.1);
+    background: linear-gradient(135deg, #161619 0%, #1c1c20 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -80,8 +80,8 @@
 
 .about-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0.75rem 2rem rgba(100, 161, 157, 0.15);
-    border-color: rgba(100, 161, 157, 0.25);
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .about-card .card-body {
@@ -129,31 +129,47 @@
     box-shadow: 0 4px 12px rgba(100, 161, 157, 0.3);
 }
 
-/* Founder photo wrapper with gradient border */
-.founder-photo-wrapper {
+/* Founder photo with dark vignette and desaturation */
+.founder-photo-container {
+    position: relative;
     display: inline-block;
-    padding: 3px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #467370 0%, #64a19d 50%, #7fb9b5 100%);
-    box-shadow: 0 0.75rem 2.5rem rgba(100, 161, 157, 0.25),
-                0 0 40px rgba(100, 161, 157, 0.1);
+    overflow: hidden;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.4);
     transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
 
-.founder-photo-wrapper:hover {
-    box-shadow: 0 1rem 3rem rgba(100, 161, 157, 0.35),
-                0 0 60px rgba(100, 161, 157, 0.15);
+.founder-photo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    background: radial-gradient(ellipse at center 30%, transparent 50%, rgba(12, 12, 12, 0.5) 100%);
+    pointer-events: none;
+}
+
+.founder-photo-container:hover {
+    box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, 0.5);
     transform: translateY(-3px);
 }
 
 .founder-photo {
     max-width: 360px;
-    border-radius: 10px;
+    border-radius: 12px;
     display: block;
+    filter: grayscale(0.95) contrast(1.1);
+    transition: filter 0.4s ease;
+}
+
+.founder-photo-container:hover .founder-photo {
+    filter: grayscale(0.4) contrast(1.1);
 }
 
 @media (max-width: 991px) {
-    .founder-photo-wrapper {
+    .founder-photo-container {
         margin: 0 auto;
     }
 
