@@ -11430,11 +11430,98 @@ canvas {
 .trusted-by-section .col-6:nth-child(5) .company-logo { transition-delay: 0.32s; }
 .trusted-by-section .col-6:nth-child(6) .company-logo { transition-delay: 0.4s; }
 
+/* ===== CTA BUTTONS ===== */
+
+.btn-cta {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    padding: 0.7rem 2rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-cta-hero {
+    background: linear-gradient(135deg, #467370 0%, #64a19d 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(100, 161, 157, 0.35);
+}
+
+.btn-cta-hero:hover {
+    background: linear-gradient(135deg, #3a615e 0%, #548b87 100%);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(100, 161, 157, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-cta-dark {
+    background: transparent;
+    color: #64a19d;
+    border: 2px solid #64a19d;
+}
+
+.btn-cta-dark:hover {
+    background: linear-gradient(135deg, #467370 0%, #64a19d 100%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(100, 161, 157, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-cta-light {
+    background: linear-gradient(135deg, #467370 0%, #64a19d 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(100, 161, 157, 0.25);
+}
+
+.btn-cta-light:hover {
+    background: linear-gradient(135deg, #3a615e 0%, #548b87 100%);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(100, 161, 157, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-cta-nav {
+    background: linear-gradient(135deg, #467370 0%, #64a19d 100%);
+    color: #fff !important;
+    border: none;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(100, 161, 157, 0.3);
+}
+
+.btn-cta-nav:hover {
+    background: linear-gradient(135deg, #3a615e 0%, #548b87 100%);
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(100, 161, 157, 0.45);
+    transform: translateY(-1px);
+}
+
+.nav-cta {
+    display: flex;
+    align-items: center;
+}
+
 /* ===== RESPONSIVE REFINEMENTS ===== */
 
 @media (max-width: 991px) {
     .masterhead h1 {
         letter-spacing: 0.04em;
+    }
+}
+
+@media (max-width: 991px) {
+    .nav-cta {
+        margin-top: 0.75rem;
+        justify-content: center;
+    }
+
+    .btn-cta-nav {
+        display: inline-block;
     }
 }
 
@@ -11446,5 +11533,10 @@ canvas {
 
     .principles-section .principle {
         margin: 0.25rem 0;
+    }
+
+    .btn-cta {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
     }
 }
