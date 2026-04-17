@@ -11509,15 +11509,16 @@ canvas {
 /* ===== RESPONSIVE REFINEMENTS ===== */
 
 @media (max-width: 991.98px) {
-    #mainNav {
+    #mainNav.nav-open {
         background-color: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
     }
 
-    #mainNav .navbar-collapse {
-        padding: 0.5rem 0 1rem;
+    #mainNav .navbar-collapse.show,
+    #mainNav .navbar-collapse.collapsing {
+        min-height: 50vh;
     }
 
     #mainNav .nav-link {

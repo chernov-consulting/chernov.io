@@ -45,6 +45,10 @@
     navbarCollapse();
     $(window).scroll(navbarCollapse);
 
+    $('#navbarResponsive')
+        .on('show.bs.collapse', function () { $('#mainNav').addClass('nav-open'); })
+        .on('hide.bs.collapse', function () { $('#mainNav').removeClass('nav-open'); });
+
 })(jQuery);
 
 particlesJS.load('particles-js', 'assets/particles.json');
