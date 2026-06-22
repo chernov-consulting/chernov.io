@@ -95,12 +95,15 @@
 }
 
 .about-card ul {
-    padding-left: 1.5rem;
+    padding-left: 1.25rem;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .about-card ul li {
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
+    line-height: 1.45;
 }
 
 .about-card i {
@@ -160,12 +163,12 @@
     max-width: 360px;
     border-radius: 12px;
     display: block;
-    filter: grayscale(0.95) contrast(1.1);
+    filter: grayscale(1);
     transition: filter 0.4s ease;
 }
 
 .founder-photo-container:hover .founder-photo {
-    filter: grayscale(0.4) contrast(1.1);
+    filter: grayscale(0);
 }
 
 @media (max-width: 991px) {
