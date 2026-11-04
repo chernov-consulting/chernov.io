@@ -2,80 +2,6 @@
 <html lang="en" class="no-js">
 
 <head>
-    <script type="text/javascript">
-        var _iub = _iub || [];
-        _iub.csConfiguration = {
-            "whitelabel": false,
-            "lang": "en",
-            "siteId": 2259924,
-            "consentOnContinuedBrowsing": false,
-            "enableCMP": true,
-            "cookiePolicyId": 51162682,
-            "banner": {
-                "acceptButtonDisplay": true,
-                "customizeButtonDisplay": true,
-                "position": "bottom",
-                "closeButtonDisplay": false,
-                "acceptButtonColor": "#495057",
-                "acceptButtonCaptionColor": "white",
-                "customizeButtonColor": "#212121",
-                "customizeButtonCaptionColor": "white",
-                "rejectButtonColor": "#0073CE",
-                "rejectButtonCaptionColor": "white",
-                "textColor": "white",
-                "backgroundColor": "#000001"
-            },
-            "callback": {
-                onPreferenceExpressedOrNotNeeded: function (preference) {
-                    dataLayer.push({
-                        iubenda_ccpa_opted_out: _iub.cs.api.isCcpaOptedOut()
-                    });
-                    if (!preference) {
-                        dataLayer.push({
-                            event: "iubenda_preference_not_needed"
-                        });
-                    } else {
-                        if (preference.consent === true) {
-                            dataLayer.push({
-                                event: "iubenda_consent_given"
-                            });
-                        } else if (preference.consent === false) {
-                            dataLayer.push({
-                                event: "iubenda_consent_rejected"
-                            });
-                        } else if (preference.purposes) {
-                            for (var purposeId in preference.purposes) {
-                                if (preference.purposes[purposeId]) {
-                                    dataLayer.push({
-                                        event: "iubenda_consent_given_purpose_" + purposeId
-                                    });
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        };
-    </script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/tcf/stub-v2.js"></script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
-
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NM67G8Q');</script>
-    <!-- End Google Tag Manager -->
-
     <meta charset="utf-8" />
     <script>document.documentElement.classList.replace('no-js', 'js')</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -106,7 +32,24 @@
     <!-- The venture cards borrow each brand's face, subset to the one word they set -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&text=%C3%86nimaLbs%20&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&text=KODAMkodam&display=swap" rel="stylesheet">
-    <link href="stylesheets/site.css?v=20261104" rel="stylesheet">
+    <link href="stylesheets/site.css?v=20261105" rel="stylesheet">
+    <!-- Consent Mode: analytics stays off until the visitor says yes (see consent.js).
+     A returning visitor's yes is restored here, so the Google tag fires on Initialization. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+        try {
+            var c = JSON.parse(localStorage.getItem('consent') || 'null');
+            if (c && c.analytics === 'granted' && Date.now() - c.at < 365 * 864e5) {
+                gtag('consent', 'update', { analytics_storage: 'granted' });
+            }
+        } catch (e) {}
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NM67G8Q');</script>
+    <!-- End Google Tag Manager -->
+
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"ProfessionalService","name":"Chernov Consulting OÜ","url":"https://chernov.io/","logo":"https://chernov.io/images/chernov-logo.png","image":"https://chernov.io/images/og.png","email":"info@chernov.io","telephone":"+491707641430","vatID":"EE102315583","foundingDate":"2020","founder":{"@type":"Person","name":"Anton Chernov","jobTitle":"Founder & Operating Partner","sameAs":["https://www.linkedin.com/in/antonchernov"]},"address":{"@type":"PostalAddress","streetAddress":"Sepapaja tn 6","postalCode":"15551","addressLocality":"Tallinn","addressCountry":"EE"},"sameAs":["https://www.linkedin.com/company/chernov","https://github.com/chernov"]}
     </script>
@@ -114,16 +57,10 @@
 
 <body>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NM67G8Q" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     {{{body}}}
 
     <script src="javascripts/site.js?v=20261104" defer></script>
+    <script src="javascripts/consent.js?v=20261105" defer></script>
 </body>
 
 </html>
