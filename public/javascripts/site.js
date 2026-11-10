@@ -68,49 +68,61 @@
         Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
     }
 
-    // Hero: the Chernov mark, assembled from its own pieces.
+    // Hero: the Chernov mark, in pieces.
     // MARK is the logo traced from the 512px icon: 16 right-angled pieces
     // (an inner ring of 4, an outer ring of 12) in units of the mark's radius.
-    // It is near-identical after a half turn, so each ring can turn 180° and
-    // lock back into the same mark. Around it, a field of small "step" glyphs,
-    // the mark's own stroke, turns a quarter at a time: a wave goes out from
-    // the mark each time it turns, and the pointer swings nearby steps into a
-    // pinwheel, the way the mark's pieces sit around its centre.
+    // At rest the pieces drift loose across the hero. Hover the right side
+    // (or tap, on touch) and they swing in and lock into the mark; while it
+    // holds, each ring turns half a turn now and then. The mark is
+    // near-identical after a half turn, so it always locks back into itself.
     var MARK = [
-        [[-.066,-.997],[.299,-.997],[.299,-.775],[.526,-.775],[.526,-.770],[.532,-.770],[.532,-.653],[.172,-.653],[.172,-.770],[.177,-.770],[.177,-.780],[.172,-.780],[.172,-.876],[-.066,-.876]],
-        [[-.288,-.955],[-.167,-.955],[-.167,-.728],[.056,-.728],[.056,-.722],[.061,-.722],[.061,-.362],[-.066,-.362],[-.066,-.601],[-.288,-.601]],
-        [[.426,-.542],[.653,-.542],[.653,-.780],[.775,-.780],[.775,-.415],[.548,-.415],[.548,-.188],[.426,-.188]],
-        [[-.780,-.770],[-.415,-.770],[-.415,-.500],[-.188,-.500],[-.188,-.378],[-.542,-.378],[-.542,-.648],[-.780,-.648]],
-        [[-.997,-.294],[-.765,-.294],[-.765,-.521],[-.759,-.521],[-.759,-.526],[-.638,-.526],[-.638,-.172],[-.876,-.172],[-.876,.071],[-.997,.071]],
-        [[-.061,-.071],[-.056,-.071],[-.056,-.278],[.167,-.278],[.167,-.283],[.172,-.283],[.172,-.521],[.294,-.521],[.294,-.156],[.066,-.156],[.066,.003],[-.056,.003],[-.056,-.003],[-.061,-.003]],
-        [[-.521,-.288],[-.156,-.288],[-.156,-.003],[-.278,-.003],[-.278,-.167],[-.521,-.167]],
-        [[.368,-.066],[.648,-.066],[.648,-.288],[.960,-.288],[.960,-.167],[.775,-.167],[.775,.056],[.770,.056],[.770,.061],[.368,.061]],
-        [[.653,.177],[.659,.177],[.659,.172],[.881,.172],[.881,-.066],[1.003,-.066],[1.003,.299],[.780,.299],[.780,.526],[.653,.526]],
-        [[-.955,.172],[-.765,.172],[-.765,-.050],[-.759,-.050],[-.759,-.056],[-.362,-.056],[-.362,.066],[-.638,.066],[-.638,.294],[-.955,.294]],
-        [[.161,.003],[.283,.003],[.283,.161],[.521,.161],[.521,.283],[.161,.283]],
-        [[-.288,.119],[.066,.119],[.066,.241],[-.167,.241],[-.167,.521],[-.288,.521]],
-        [[-.770,.421],[-.548,.421],[-.548,.193],[-.421,.193],[-.421,.542],[-.648,.542],[-.648,.786],[-.770,.786]],
-        [[-.056,.368],[.066,.368],[.066,.606],[.294,.606],[.294,.960],[.172,.960],[.172,.733],[.167,.733],[.167,.728],[-.056,.728]],
-        [[.193,.373],[.542,.373],[.542,.648],[.548,.648],[.548,.653],[.786,.653],[.786,.775],[.421,.775],[.421,.500],[.193,.500]],
-        [[-.526,.653],[-.172,.653],[-.172,.881],[.071,.881],[.071,1.003],[-.294,1.003],[-.294,.780],[-.521,.780],[-.521,.775],[-.526,.775]]
+        [[-.061,-.997],[.296,-.997],[.296,-.775],[.526,-.775],[.526,-.651],[.169,-.651],[.169,-.876],[-.061,-.876]],
+        [[-.291,-.955],[-.169,-.955],[-.169,-.725],[.064,-.725],[.064,-.362],[-.061,-.362],[-.061,-.601],[-.291,-.601]],
+        [[.423,-.542],[.653,-.542],[.653,-.775],[.778,-.775],[.778,-.415],[.545,-.415],[.545,-.188],[.423,-.188]],
+        [[-.78,-.775],[-.418,-.775],[-.418,-.5],[-.188,-.5],[-.188,-.378],[-.545,-.378],[-.545,-.651],[-.78,-.651]],
+        [[-.997,-.286],[-.765,-.286],[-.765,-.524],[-.638,-.524],[-.638,-.169],[-.876,-.169],[-.876,.064],[-.997,.064]],
+        [[-.061,-.286],[.169,-.286],[.169,-.524],[.296,-.524],[.296,-.156],[.064,-.156],[.064,0],[-.061,0]],
+        [[-.524,-.286],[-.156,-.286],[-.156,0],[-.278,0],[-.278,-.169],[-.524,-.169]],
+        [[.368,-.069],[.653,-.069],[.653,-.286],[.96,-.286],[.96,-.169],[.778,-.169],[.778,.064],[.368,.064]],
+        [[.653,.174],[.881,.174],[.881,-.069],[1.003,-.069],[1.003,.296],[.778,.296],[.778,.524],[.653,.524]],
+        [[-.955,.174],[-.765,.174],[-.765,-.053],[-.362,-.053],[-.362,.064],[-.638,.064],[-.638,.296],[-.955,.296]],
+        [[.169,0],[.283,0],[.283,.161],[.526,.161],[.526,.283],[.169,.283]],
+        [[-.291,.119],[.064,.119],[.064,.241],[-.169,.241],[-.169,.524],[-.291,.524]],
+        [[-.765,.421],[-.545,.421],[-.545,.193],[-.418,.193],[-.418,.542],[-.648,.542],[-.648,.78],[-.765,.78]],
+        [[-.061,.37],[.064,.37],[.064,.606],[.296,.606],[.296,.96],[.169,.96],[.169,.73],[-.061,.73]],
+        [[.193,.37],[.545,.37],[.545,.651],[.778,.651],[.778,.78],[.423,.78],[.423,.5],[.193,.5]],
+        [[-.524,.651],[-.169,.651],[-.169,.881],[.064,.881],[.064,1.003],[-.291,1.003],[-.291,.78],[-.524,.78]]
     ];
 
     var canvas = document.querySelector('.field');
     if (!canvas || !canvas.getContext) return;
     var ctx = canvas.getContext('2d');
+    var hero = canvas.parentNode;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var TAU = Math.PI * 2, QUARTER = Math.PI / 2;
-    var W, H, unit, fieldAlpha = 1, glyphs = [], raf;
-    var mark = { x: 0, y: 0, r: 0, alpha: 1, ox: 0, oy: 0 };
+    var W, H, narrow, raf, fill;
+    var mark = { x: 0, y: 0, r: 0, alpha: 1, loose: 0.3, ox: 0, oy: 0 };
     var pointer = { x: -9999, y: -9999, tx: -9999, ty: -9999 };
-    var start = performance.now();
+    var hover = false, tapped = false, intro = !reduced;
+    var g = reduced ? 1 : 0, clock = 0, start = performance.now(), last = start;
+
+    // A seeded random, so the loose layout is the same on every visit.
+    function seeded(a) {
+        return function () {
+            a = (a + 0x6D2B79F5) | 0;
+            var t = Math.imul(a ^ (a >>> 15), 1 | a);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+    }
 
     // Each piece keeps its centroid and its outline relative to it.
-    var pieces = MARK.map(function (p) {
+    var rnd = seeded(11);
+    var pieces = MARK.map(function (p, i) {
         var A = 0, cx = 0, cy = 0;
-        for (var i = 0; i < p.length; i++) {
-            var a = p[i], b = p[(i + 1) % p.length], c = a[0] * b[1] - b[0] * a[1];
+        for (var j = 0; j < p.length; j++) {
+            var a = p[j], b = p[(j + 1) % p.length], c = a[0] * b[1] - b[0] * a[1];
             A += c; cx += (a[0] + b[0]) * c; cy += (a[1] + b[1]) * c;
         }
         cx /= 3 * A; cy /= 3 * A;
@@ -118,60 +130,73 @@
             cx: cx, cy: cy,
             pts: p.map(function (q) { return [q[0] - cx, q[1] - cy]; }),
             inner: Math.sqrt(cx * cx + cy * cy) < 0.5,
-            order: (Math.atan2(cy, cx) + Math.PI) / TAU   // 0..1 around the circle
+            order: (Math.atan2(cy, cx) + Math.PI) / TAU,          // 0..1 around the circle
+            turn: [-1, 1, 2, -1, 1][i % 5] * QUARTER,            // how it lies when loose
+            scale: 0.72 + rnd() * 0.3,
+            phase: rnd() * TAU, freq: 0.18 + rnd() * 0.16,
+            arc: rnd() < 0.5 ? -1 : 1,
+            sx: 0, sy: 0
         };
     });
 
-    // One step of the field: a Z of three strokes, centred, one unit thick.
-    var STEP = [[0, 0], [2, 0], [2, 2], [3, 2], [3, 3], [1, 3], [1, 1], [0, 1]].map(function (q) { return [q[0] - 1.5, q[1] - 1.5]; });
-
-    function ease(x) { x = Math.min(1, Math.max(0, x)); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
-    function easeOut(x) { x = Math.min(1, Math.max(0, x)); return 1 - Math.pow(1 - x, 4); }
+    function clamp(x) { return Math.min(1, Math.max(0, x)); }
+    function ease(x) { x = clamp(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
 
     function layout() {
         var r = canvas.getBoundingClientRect();
         W = r.width; H = r.height;
         canvas.width = W * dpr; canvas.height = H * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        narrow = W < 1080;
         var inner = document.querySelector('.hero-inner');
         var ir = inner ? inner.getBoundingClientRect() : r;
-        if (W >= 1080) {
+        if (!narrow) {
             mark.r = Math.min(W * 0.19, ir.height * 0.4, 290);
             mark.x = W * 0.76;
             mark.y = ir.top - r.top + ir.height * 0.5;
-            mark.alpha = 1;
+            mark.alpha = 1; mark.loose = 0.42;
         } else {
             // On narrow screens the mark sits behind the headline, quietly.
             mark.r = Math.min(W * 0.34, 170);
             mark.x = W - mark.r * 0.7;
             mark.y = mark.r + 64;
-            mark.alpha = 0.28;
+            mark.alpha = 0.3; mark.loose = 0.2;
         }
-        // On narrow screens the field sits under the text: sparser and quieter.
-        unit = W < 700 ? 3 : 3.6;
-        fieldAlpha = W >= 1080 ? 1 : 0.45;
-        var gap = unit * (W >= 1080 ? 8 : 11);
-        glyphs = [];
-        for (var y = gap / 2; y < H; y += gap) {
-            for (var x = gap / 2; x < W; x += gap) {
-                var dx = x - mark.x, dy = y - mark.y, d = Math.sqrt(dx * dx + dy * dy);
-                if (d < mark.r * 1.18) continue;
-                var k = Math.floor(Math.random() * 4) * QUARTER;
-                glyphs.push({ x: x, y: y, d: d, a: k, target: k, heat: 0, wave: -2 });
+        fill = ctx.createLinearGradient(mark.x - mark.r, mark.y - mark.r, mark.x + mark.r, mark.y + mark.r);
+        fill.addColorStop(0, '#467370'); fill.addColorStop(0.55, '#7FB9B5'); fill.addColorStop(1, '#A6E0DA');
+
+        // Loose places: spread out (best of a few random candidates), leaning
+        // right on wide screens where the vignette opens.
+        var spots = [], pick = seeded(23);
+        var x0 = narrow ? W * 0.04 : W * 0.06, x1 = W * 0.97;
+        var y0 = narrow ? 80 : H * 0.12, y1 = narrow ? H * 0.94 : H * 0.84;
+        for (var i = 0; i < pieces.length; i++) {
+            var best = null, bestD = -1;
+            for (var k = 0; k < 24; k++) {
+                var c = [x0 + (x1 - x0) * Math.pow(pick(), narrow ? 1 : 0.7), y0 + (y1 - y0) * pick()];
+                var d = Infinity;
+                for (var j = 0; j < spots.length; j++) d = Math.min(d, Math.hypot(c[0] - spots[j][0], (c[1] - spots[j][1]) * 1.3));
+                if (d > bestD) { bestD = d; best = c; }
             }
+            spots.push(best);
         }
+        // Hand the places out by angle around the mark, so the pieces fly
+        // apart outwards rather than across each other.
+        function around(x, y) { return (Math.atan2(y, x) + TAU) % TAU; }
+        spots.sort(function (a, b) { return around(a[0] - mark.x, a[1] - mark.y) - around(b[0] - mark.x, b[1] - mark.y); });
+        var byAngle = pieces.slice().sort(function (a, b) { return around(a.cx, a.cy) - around(b.cx, b.cy); });
+        byAngle.forEach(function (p, i) { p.sx = spots[i][0]; p.sy = spots[i][1]; });
     }
 
-    // The mark locks at 1.5s; after that each ring turns every 7s.
-    var LOCK = 1.5, FIRST = 3.5, PERIOD = 7, WAVE_SPEED = 560;
-
-    // While turning, the outer ring opens and the inner ring tucks in, so the
-    // pieces pass each other cleanly, like a lock releasing and closing again.
-    function ringTurns(t) {
-        if (t < FIRST) return { inner: 0, outer: 0, innerR: 1, outerR: 1 };
-        var n = Math.floor((t - FIRST) / PERIOD), u = t - FIRST - n * PERIOD;
-        var pi = Math.min(1, Math.max(0, u / 1.4)), po = Math.min(1, Math.max(0, (u - 0.35) / 1.6));
-        var open = Math.sin(Math.PI * Math.min(1, Math.max(0, u / 2.1)));
+    // While assembled, each ring turns every 6.5s. While turning, the outer
+    // ring opens and the inner ring tucks in, so the pieces pass cleanly,
+    // like a lock releasing and closing again.
+    var FIRST = 2.4, PERIOD = 6.5, TURN = 2.1;
+    function ringTurns(c) {
+        if (c < FIRST) return { inner: 0, outer: 0, innerR: 1, outerR: 1 };
+        var n = Math.floor((c - FIRST) / PERIOD), u = c - FIRST - n * PERIOD;
+        var pi = clamp(u / 1.4), po = clamp((u - 0.35) / 1.6);
+        var open = Math.sin(Math.PI * clamp(u / TURN));
         return {
             inner: (n + ease(pi)) * Math.PI,
             outer: -(n + ease(po)) * Math.PI,
@@ -179,97 +204,82 @@
             outerR: 1 + 0.14 * open
         };
     }
-    // Waves go out at the lock, then at the start of every turn.
-    function waveAt(t) {
-        if (t < LOCK) return null;
-        if (t < FIRST) return { id: -1, r: (t - LOCK) * WAVE_SPEED };
-        var n = Math.floor((t - FIRST) / PERIOD);
-        return { id: n, r: (t - FIRST - n * PERIOD) * WAVE_SPEED };
-    }
+    function turning(c) { return c >= FIRST && (c - FIRST) % PERIOD < TURN; }
 
-    var BUCKETS = 10, cool = [], hot = [];
-    for (var b = 0; b < BUCKETS; b++) {
-        cool.push('rgba(100,161,157,' + (0.06 + 0.3 * b / (BUCKETS - 1)).toFixed(3) + ')');
-        hot.push('rgba(166,224,218,' + (0.25 + 0.65 * b / (BUCKETS - 1)).toFixed(3) + ')');
-    }
+    function frame(now) {
+        var t = (now - start) / 1000, dt = Math.min(0.05, (now - last) / 1000);
+        last = now;
+        // The first visit shows the mark once, then lets it go.
+        if (intro && t > 4.8) intro = false;
+        var target = reduced || hover || tapped || (intro && t > 0.7) ? 1 : 0;
+        g += Math.max(-dt / 1.6, Math.min(dt / 1.3, target - g));
+        if ((g >= 1 && target) || turning(clock)) clock += dt;
 
-    function drawField(t) {
-        var w = reduced ? null : waveAt(t);
-        var paths = [], b;
-        for (b = 0; b < BUCKETS * 2; b++) paths.push(new Path2D());
-        var R = 170, R2 = R * R, s = unit;
-        for (var i = 0; i < glyphs.length; i++) {
-            var g = glyphs[i];
-            if (w && g.wave < w.id && g.d < w.r) { g.wave = w.id; g.target += QUARTER; g.heat = Math.max(g.heat, 0.35); }
-            var dx = g.x - pointer.x, dy = g.y - pointer.y, dd = dx * dx + dy * dy;
-            if (dd < R2) {
-                // tangent to the pointer, on the quarter grid; a Z repeats every half turn
-                var q = Math.round((Math.atan2(dy, dx) + QUARTER) / QUARTER) * QUARTER;
-                var diff = ((q - g.target) % Math.PI + Math.PI * 1.5) % Math.PI - QUARTER;
-                g.target += Math.round(diff / QUARTER) * QUARTER;
-                g.heat = Math.max(g.heat, 1 - Math.sqrt(dd) / R);
-            }
-            g.a += (g.target - g.a) * 0.16;
-            g.heat *= 0.97;
-            // brighter to the right, where the vignette opens
-            var base = (0.15 + 0.85 * (g.x / W)) * fieldAlpha;
-            var isHot = g.heat > 0.12;
-            var level = isHot ? g.heat : base;
-            var path = paths[(isHot ? BUCKETS : 0) + Math.min(BUCKETS - 1, Math.floor(level * BUCKETS))];
-            var c = Math.cos(g.a) * s, sn = Math.sin(g.a) * s;
-            for (var j = 0; j < STEP.length; j++) {
-                var px = g.x + STEP[j][0] * c - STEP[j][1] * sn, py = g.y + STEP[j][0] * sn + STEP[j][1] * c;
-                if (j) path.lineTo(px, py); else path.moveTo(px, py);
-            }
-            path.closePath();
-        }
-        for (b = 0; b < BUCKETS; b++) { ctx.fillStyle = cool[b]; ctx.fill(paths[b]); }
-        for (b = 0; b < BUCKETS; b++) { ctx.fillStyle = hot[b]; ctx.fill(paths[BUCKETS + b]); }
-    }
+        pointer.x += (pointer.tx - pointer.x) * 0.15;
+        pointer.y += (pointer.ty - pointer.y) * 0.15;
+        ctx.clearRect(0, 0, W, H);
 
-    function drawMark(t) {
         // a slight drift toward the pointer, so the mark feels held, not printed
         var tx = pointer.x > -9000 ? (pointer.x - mark.x) * 0.02 : 0, ty = pointer.y > -9000 ? (pointer.y - mark.y) * 0.02 : 0;
         mark.ox += (tx - mark.ox) * 0.06; mark.oy += (ty - mark.oy) * 0.06;
         var mx = mark.x + mark.ox, my = mark.y + mark.oy, r = mark.r;
-        var halo = ctx.createRadialGradient(mx, my, r * 0.2, mx, my, r * 1.6);
-        halo.addColorStop(0, 'rgba(100,161,157,' + (0.16 * mark.alpha) + ')');
-        halo.addColorStop(1, 'rgba(100,161,157,0)');
-        ctx.fillStyle = halo;
-        ctx.fillRect(mx - r * 1.6, my - r * 1.6, r * 3.2, r * 3.2);
-        var fill = ctx.createLinearGradient(mx - r, my - r, mx + r, my + r);
-        fill.addColorStop(0, '#467370'); fill.addColorStop(0.55, '#7FB9B5'); fill.addColorStop(1, '#A6E0DA');
-        ctx.fillStyle = fill;
-        var turns = ringTurns(t);
+
+        var whole = ease(g), fadeIn = reduced ? 1 : ease(t / 0.8);
+        if (whole > 0) {
+            var halo = ctx.createRadialGradient(mx, my, r * 0.2, mx, my, r * 1.6);
+            halo.addColorStop(0, 'rgba(100,161,157,' + (0.16 * mark.alpha * whole) + ')');
+            halo.addColorStop(1, 'rgba(100,161,157,0)');
+            ctx.fillStyle = halo;
+            ctx.fillRect(mx - r * 1.6, my - r * 1.6, r * 3.2, r * 3.2);
+        }
+
+        var turns = ringTurns(clock);
+        ctx.lineWidth = 1.25;
+        ctx.lineJoin = 'miter';
         for (var i = 0; i < pieces.length; i++) {
             var p = pieces[i];
-            var e = easeOut((t - 0.15 - p.order * 0.5 - (p.inner ? 0 : 0.2)) / 1.1);
-            if (e <= 0) continue;
-            var ring = p.inner ? turns.inner : turns.outer;
+            // pieces arrive one after another around the circle
+            var e = ease(g * 1.6 - p.order * 0.6);
+            var ring = p.inner ? turns.inner : turns.outer, spread = p.inner ? turns.innerR : turns.outerR;
             var cr = Math.cos(ring), sr = Math.sin(ring);
-            // assemble: each piece swings in from outside and a quarter turn back
-            var out = (1 + (1 - e) * 0.6) * (p.inner ? turns.innerR : turns.outerR), spin = ring - (1 - e) * QUARTER;
-            var px = mx + (p.cx * cr - p.cy * sr) * r * out, py = my + (p.cx * sr + p.cy * cr) * r * out;
-            var c = Math.cos(spin) * r, s = Math.sin(spin) * r;
-            ctx.globalAlpha = mark.alpha * e;
+            var hx = mx + (p.cx * cr - p.cy * sr) * r * spread, hy = my + (p.cx * sr + p.cy * cr) * r * spread;
+
+            // loose: a slow float, and a little room made for the pointer
+            var lx = p.sx + Math.sin(t * p.freq + p.phase) * 14, ly = p.sy + Math.cos(t * p.freq * 0.8 + p.phase) * 10;
+            var dx = lx - pointer.x, dy = ly - pointer.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+            if (d < 200) { var push = Math.pow(1 - d / 200, 2) * 26; lx += dx / d * push; ly += dy / d * push; }
+
+            // travel on a gentle arc, not a straight line
+            var vx = hx - lx, vy = hy - ly, bow = Math.sin(Math.PI * e) * 0.16 * p.arc;
+            var px = lx + vx * e - vy * bow, py = ly + vy * e + vx * bow;
+            var spin = ring + (p.turn + Math.sin(t * p.freq * 0.7 + p.phase) * 0.18) * (1 - e);
+            var size = r * (p.scale + (1 - p.scale) * e);
+            // loose pieces fade under the headline, brighter to the right
+            var loose = mark.loose * (narrow ? 1 : 0.35 + 0.65 * clamp(lx / W));
+            var c = Math.cos(spin) * size, s = Math.sin(spin) * size;
+
             ctx.beginPath();
             for (var j = 0; j < p.pts.length; j++) {
                 var q = p.pts[j], x = px + q[0] * c - q[1] * s, y = py + q[0] * s + q[1] * c;
                 if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y);
             }
             ctx.closePath();
-            ctx.fill();
+            if (e > 0) {
+                ctx.globalAlpha = fadeIn * mark.alpha * e;
+                ctx.fillStyle = fill;
+                ctx.fill();
+            }
+            if (e < 1) {
+                // loose pieces read as outlines with a breath of fill: a blueprint of the mark
+                ctx.globalAlpha = fadeIn * loose * 0.35 * (1 - e);
+                ctx.fillStyle = '#64A19D';
+                ctx.fill();
+                ctx.globalAlpha = fadeIn * Math.min(1, loose * 1.5) * (1 - e);
+                ctx.strokeStyle = '#7FB9B5';
+                ctx.stroke();
+            }
         }
         ctx.globalAlpha = 1;
-    }
-
-    function frame(now) {
-        var t = reduced ? FIRST - 0.5 : (now - start) / 1000;
-        pointer.x += (pointer.tx - pointer.x) * 0.15;
-        pointer.y += (pointer.ty - pointer.y) * 0.15;
-        ctx.clearRect(0, 0, W, H);
-        drawField(t);
-        drawMark(t);
         if (!reduced) raf = requestAnimationFrame(frame);
     }
 
@@ -277,20 +287,34 @@
     var resizeT;
     window.addEventListener('resize', function () {
         clearTimeout(resizeT);
-        resizeT = setTimeout(function () { layout(); if (reduced) frame(0); }, 120);
+        resizeT = setTimeout(function () { layout(); if (reduced) frame(performance.now()); }, 120);
     });
-    var hero = canvas.parentNode;
     hero.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return;
         var r = canvas.getBoundingClientRect();
         pointer.tx = e.clientX - r.left; pointer.ty = e.clientY - r.top;
         if (pointer.x < -9000) { pointer.x = pointer.tx; pointer.y = pointer.ty; }
+        // the right side of the hero is where the mark lives
+        hover = pointer.tx > W * 0.5;
+        if (hover) intro = false;
     });
-    hero.addEventListener('pointerleave', function () { pointer.tx = pointer.ty = -9999; pointer.x = pointer.y = -9999; });
+    hero.addEventListener('pointerleave', function () {
+        hover = false;
+        pointer.tx = pointer.ty = -9999; pointer.x = pointer.y = -9999;
+    });
+    // On touch, a tap on the hero (not on a link) brings the mark together or apart.
+    var lastPointer = 'mouse';
+    hero.addEventListener('pointerdown', function (e) { lastPointer = e.pointerType; });
+    hero.addEventListener('click', function (e) {
+        if (lastPointer === 'mouse' || e.target.closest('a, button')) return;
+        tapped = !(tapped || (intro && g > 0.5));
+        intro = false;
+    });
 
     if ('IntersectionObserver' in window && !reduced) {
         new IntersectionObserver(function (e) {
             cancelAnimationFrame(raf);
-            if (e[0].isIntersecting) raf = requestAnimationFrame(frame);
+            if (e[0].isIntersecting) { last = performance.now(); raf = requestAnimationFrame(frame); }
         }).observe(canvas);
     } else {
         raf = requestAnimationFrame(frame);
